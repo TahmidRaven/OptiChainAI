@@ -1,0 +1,21 @@
+git clone """link of the git .git"""
+
+git add . (after changing files)
+git commit -m "message diste hobe"
+git push origin main (jodi branch main hoyu)
+
+how to check branches:
+git status  
+
+git branch -a  
+(*green branch is the one you're on)
+
+git checkout "branch name" (swtich to another branch)
+
+git checkout -b "new_branch_name_&switch"
+
+git push -u origin "ew_branch_name_&switch"
+
+git branch -d "delete_local_branch"
+
+git merge "branch_name_that you want to merge"
