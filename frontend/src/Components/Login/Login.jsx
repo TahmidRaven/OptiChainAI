@@ -1,25 +1,31 @@
-import React, { useState } from 'react';
-import './Login.css';  // Link to the CSS file
+import { useState } from "react";
+import PropTypes from "prop-types";
+import './Login.css';
 
-const Login = () => {
+const Login = ({ navigate }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle login functionality here (e.g., form validation, API call)
     console.log('Logging in with:', { email, password });
+  };
+
+  const handleNavigation = (page) => {
+    navigate(page);
+    window.scrollTo(0, 0);
   };
 
   return (
     <div className="login-container">
-      <div className="login-form">
-        <h2>Login</h2>
+      <div className="login-form transparent-bg">
+        <h2>Welcome Back</h2>
+        <p className="subtitle">Please login to your account</p>
         <form onSubmit={handleSubmit}>
           <input
             type="email"
             className="input-field"
-            placeholder="Email"
+            placeholder="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -36,10 +42,19 @@ const Login = () => {
             Login
           </button>
         </form>
-        <a href="#" className="forgot-password">Forgot password?</a>
+        <div className="extra-links">
+          <a href="#" className="forgot-password">Forgot password?</a>
+          <span className="no-account">
+            No account? <span onClick={() => handleNavigation("registration")} className="signup-link">Sign Up</span>
+          </span>
+        </div>
       </div>
     </div>
   );
+};
+
+Login.propTypes = {
+    navigate: PropTypes.func.isRequired,
 };
 
 export default Login;

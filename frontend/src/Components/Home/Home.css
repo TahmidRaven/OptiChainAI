@@ -3,7 +3,6 @@
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2rem;
     padding: 4vh 5vw;
-    background-color: var(--primary-color);
     width: 100%;
     max-width: 1300px;
     margin: 0 auto;
@@ -11,7 +10,6 @@
 }
 
 .feature-card {
-    background-color: var(--primary-color);
     padding: 1.5rem;
     border-radius: 15px;
     box-shadow: 0 4px 10px var(--shadow-color);

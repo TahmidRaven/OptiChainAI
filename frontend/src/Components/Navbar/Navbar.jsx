@@ -37,7 +37,7 @@ const Navbar = ({ navigate }) => {
     return (
         <nav className="navbar container">
         <div onClick={() => handleNavigation("home")}>
-          <img src={logo} alt="Logo" className="event-logo" onClick={() => handleNavigation("home")}/>
+            <img src={logo} alt="Logo" className="event-logo" onClick={() => handleNavigation("home")}/>
         </div>
         <div className="dark-mode-toggle-wrapper" onClick={toggleDarkMode}>
             <div className={`dark-mode-toggle ${darkMode ? "dark" : "light"}`}>
@@ -46,10 +46,10 @@ const Navbar = ({ navigate }) => {
         </div>
         <div className={`menu ${isMenuOpen ? "open" : ""}`}>
             <ul>
-              <li onClick={() => handleNavigation("home")} className="hover-effect">Home</li>
-              <li onClick={() => handleNavigation("about")} className="hover-effect">About</li>
-              <li onClick={() => handleNavigation("contact")} className="hover-effect">Contact</li>
-              <li onClick={() => handleNavigation("login")} className="hover-effect">Log In</li>
+                <li onClick={() => handleNavigation("home")} className="hover-effect">Home</li>
+                <li onClick={() => handleNavigation("about")} className="hover-effect">About</li>
+                <li onClick={() => handleNavigation("contact")} className="hover-effect">Contact</li>
+                <li onClick={() => handleNavigation("login")} className="hover-effect">Log In</li>
             </ul>
         </div>
         <div className="hamburger" onClick={toggleMenu}>

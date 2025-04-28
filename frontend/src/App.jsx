@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import Navbar from "./Components/Navbar/Navbar.jsx";
-import About from "./Components/About/About.jsx";
 import Contact from "./Components/Contact/Contact.jsx";
 import Footer from "./Components/Footer/Footer.jsx";
 import Login from "./Components/Login/Login.jsx";
 import Home from "./Components/Home/Home.jsx";
+import Registration from "./Components/Registration/Registration.jsx";
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState(() => {
@@ -15,7 +15,6 @@ const App = () => {
 
   const changePage = (newPage) => {
     setIsTransitioning(true);
-
     setTimeout(() => {
       setCurrentPage(newPage);
       setIsTransitioning(false);
@@ -23,12 +22,11 @@ const App = () => {
   };
 
   useEffect(() => {
-    // Call the FastAPI backend when the app loads
-    fetch("http://localhost:8000/") // Backend running on localhost:8000
+    fetch("http://localhost:8000/")
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        setMessage(data.message); // Set backend response message
+        setMessage(data.message);
       })
       .catch(error => console.error("Error connecting to backend:", error));
   }, []);
@@ -37,12 +35,12 @@ const App = () => {
     switch (currentPage) {
       case "home":
         return <Home navigate={changePage} />;
-      case "about":
-        return <About />;
       case "contact":
         return <Contact />;
       case "login":
-        return <Login />;
+        return <Login navigate={changePage}/>;
+      case "registration":
+        return <Registration navigate={changePage}/>;
       default:
         return <Home navigate={changePage} />;
     }

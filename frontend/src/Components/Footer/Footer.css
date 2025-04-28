@@ -79,18 +79,6 @@ footer {
         font-size: 0.8rem;
         line-height: 1.8;
     }
-
-    .bracu-logo {
-        width: auto;
-        height: 60px;
-        margin: auto 20px;
-    }
-
-    .event-logo {
-        width: 150px;
-        height: auto;
-        margin: auto 10px;
-    }
 }
 
 @media (max-width: 480px) {
