@@ -24,3 +24,11 @@ app.add_middleware(
 @app.get("/")
 async def root():
     return {"message":"Backend is live but not fully functional yet."}
+
+
+@app.post("/upload-csv/")
+async def upload_csv(file: UploadFile = File(backend_fast/documents/dummy_sme_clothing_data_bd_festivals.csv)):
+    contents = await file.read()
+    df = pd.read_csv(StringIO(contents.decode('utf-8')))
+    # Process the CSV file as needed
+    return {"message": "CSV file uploaded successfully", "columns": df.columns.tolist()}
