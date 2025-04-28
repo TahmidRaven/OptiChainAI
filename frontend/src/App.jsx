@@ -46,7 +46,7 @@ const App = () => {
     }
   };
 
-  return (
+  return ( 
     <div>
       <Navbar navigate={changePage} />
       <div className={`page-content ${isTransitioning ? "page-transition-exit" : "page-transition-enter"}`}>
