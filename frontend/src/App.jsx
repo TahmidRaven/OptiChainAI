@@ -53,9 +53,7 @@ const App = () => {
         {renderPage()}
       </div>
       <Footer navigate={changePage} />
-      {/* Display the message from FastAPI */}
       <div>
-        <h2>Backend Message:</h2>
         <p>{message}</p>
       </div>
     </div>

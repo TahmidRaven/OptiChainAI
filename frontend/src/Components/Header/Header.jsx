@@ -15,7 +15,7 @@ const Header = ({ navigate }) => {
         <p>
           AI-powered supply chain optimization for SMEs. Affordable. Scalable. Smart.
         </p>
-        <button onClick={() => handleNavigation("abstract")} className='btn'>
+        <button onClick={() => handleNavigation("login")} className='btn'>
           Get Started
         </button>
       </div>

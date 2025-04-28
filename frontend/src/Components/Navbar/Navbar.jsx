@@ -47,9 +47,8 @@ const Navbar = ({ navigate }) => {
         <div className={`menu ${isMenuOpen ? "open" : ""}`}>
             <ul>
                 <li onClick={() => handleNavigation("home")} className="hover-effect">Home</li>
-                <li onClick={() => handleNavigation("about")} className="hover-effect">About</li>
                 <li onClick={() => handleNavigation("contact")} className="hover-effect">Contact</li>
-                <li onClick={() => handleNavigation("login")} className="hover-effect">Log In</li>
+                <li onClick={() => handleNavigation("login")} ><button className="btn">Log In</button></li>
             </ul>
         </div>
         <div className="hamburger" onClick={toggleMenu}>

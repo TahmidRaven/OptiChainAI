@@ -3,8 +3,12 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: var(--primary-color);
+    background: linear-gradient(rgba(5, 2, 20, 0.597), rgba(6, 2, 22, 0.723)), url(../../assets/Header.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     padding: 0 5%;
+    margin-top: 4%;
 }
   
 .login-form {
@@ -19,7 +23,7 @@
   
 .login-form h2 {
     margin-bottom: 20px;
-    color: var(--tertiary-color);
+    color: var(--secondary-color);;
 }
   
 .login-form .input-field {
@@ -27,7 +31,7 @@
     padding: 12px;
     margin: 10px 0;
     border-radius: 8px;
-    border: 1px solid var(--tertiary-color);
+    border: 1px solid var(--secondary-color);;
     background-color: var(--primary-color);
     color: var(--text-color);
     font-size: 16px;
@@ -54,7 +58,7 @@
   
 .login-form .btn:hover {
     background: var(--primary-color);
-    color: var(--tertiary-color);
+    color: var(--secondary-color);
     transform: translateY(-2px);
 }
   
@@ -71,39 +75,39 @@
 }
   
 .transparent-bg {
-  background-color: rgba(255, 255, 255, 0.05); /* Very light transparent white */
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--secondary-color);
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--secondary-color);
 }
 
 .subtitle {
-  font-size: 14px;
-  color: var(--tertiary-color);
-  margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
 }
 
 .extra-links {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .no-account {
-  margin-top: 10px;
-  font-size: 14px;
-  color: var(--secondary-color);
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--secondary-color);
 }
 
 .signup-link {
-  color: var(--tertiary-color);
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
+    color: var(--tertiary-color);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .signup-link:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 @media (max-width: 480px) {

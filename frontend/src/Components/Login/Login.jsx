@@ -19,7 +19,7 @@ const Login = ({ navigate }) => {
   return (
     <div className="login-container">
       <div className="login-form transparent-bg">
-        <h2>Welcome Back</h2>
+        <h2>Welcome</h2>
         <p className="subtitle">Please login to your account</p>
         <form onSubmit={handleSubmit}>
           <input

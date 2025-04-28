@@ -71,7 +71,6 @@ p, h1, h2, h3, li {
   border: 1px solid var(--secondary-color);
   background: var(--primary-color);
   color: var(--tertiary-color);
-  transform: translateY(-2px);
 }
 
 
