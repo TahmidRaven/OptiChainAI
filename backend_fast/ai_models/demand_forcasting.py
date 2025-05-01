@@ -1,6 +1,7 @@
 import pandas as pd
 from prophet import Prophet
 
+
 def forecast_sku(dataframe, sku, periods=30):
     df = dataframe[dataframe["sku"] == sku][["date", "sales"]].copy()
     df.columns = ["ds", "y"]
