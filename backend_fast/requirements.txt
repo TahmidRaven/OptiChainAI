@@ -3,3 +3,10 @@ uvicorn
 pandas
 prophet
 python-multipart
+python-dotenv
+requests
+scikit-learn
+sqlalchemy
+aiosqlite
+joblib
+orjson
