@@ -40,3 +40,16 @@ async def upload_csv(file: UploadFile = File(...)):
 
 # Include user router (e.g., /register/)
 app.include_router(user_router.router)
+
+# Demand Forecasting import of dataset
+# Load the CSV once (you can later switch to SQLAlchemy/db if needed)
+df = pd.read_csv("backend_fast\documents\dummy_sme_clothing_data_bd_festivals.csv")
+
+#Demand Forecasting endpoint
+@app.get("/forecast/{sku}")
+def get_forecast(sku: str):
+    try:
+        forecast_df = forecast_sku(df, sku)
+        return forecast_df.to_dict(orient="records")
+    except Exception as e:
+        return {"error": str(e)}

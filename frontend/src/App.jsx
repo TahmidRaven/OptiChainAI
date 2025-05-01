@@ -5,6 +5,7 @@ import Footer from "./Components/Footer/Footer.jsx";
 import Login from "./Components/Login/Login.jsx";
 import Home from "./Components/Home/Home.jsx";
 import Registration from "./Components/Registration/Registration.jsx";
+import ForecastChart from "./Components/Forecasting/ForecastChart.jsx";
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState(() => {
@@ -41,6 +42,13 @@ const App = () => {
         return <Login navigate={changePage}/>;
       case "registration":
         return <Registration navigate={changePage}/>;
+      case "forecast":
+        return (
+          <div style={{ padding: "1rem" }}>
+            <h2>Demand Forecast for SKU: <code>Tshirt_Black_S</code></h2>
+            <ForecastChart sku="Tshirt_Black_S" />
+          </div>
+        );
       default:
         return <Home navigate={changePage} />;
     }
@@ -59,5 +67,7 @@ const App = () => {
     </div>
   );
 };
+
+
 
 export default App;
