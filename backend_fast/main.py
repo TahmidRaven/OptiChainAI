@@ -6,6 +6,7 @@ from typing import List
 import pandas as pd
 from io import StringIO
 from datetime import datetime
+from demand_forecasting import DemandForecaster
 
 # Local imports
 from .routers import user_router  # Register router
@@ -41,15 +42,16 @@ async def upload_csv(file: UploadFile = File(...)):
 # Include user router (e.g., /register/)
 app.include_router(user_router.router)
 
-# Demand Forecasting import of dataset
-# Load the CSV once (you can later switch to SQLAlchemy/db if needed)
-df = pd.read_csv("backend_fast\documents\dummy_sme_clothing_data_bd_festivals.csv")
+# Initialize forecaster
+forecaster = DemandForecaster("dummy_sme_clothing_data_bd_festivals.csv")
 
-#Demand Forecasting endpoint
+@app.get("/skus")
+def get_skus():
+    return forecaster.get_skus()
+
 @app.get("/forecast/{sku}")
-def get_forecast(sku: str):
+def forecast_sku(sku: str):
     try:
-        forecast_df = forecast_sku(df, sku)
-        return forecast_df.to_dict(orient="records")
-    except Exception as e:
-        return {"error": str(e)}
+        return forecaster.forecast(sku)
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))

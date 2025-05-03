@@ -42,13 +42,8 @@ const App = () => {
         return <Login navigate={changePage}/>;
       case "registration":
         return <Registration navigate={changePage}/>;
-      case "forecast":
-        return (
-          <div style={{ padding: "1rem" }}>
-            <h2>Demand Forecast for SKU: <code>Tshirt_Black_S</code></h2>
-            <ForecastChart sku="Tshirt_Black_S" />
-          </div>
-        );
+      case "forecast": 
+        return <ForecastChart />;
       default:
         return <Home navigate={changePage} />;
     }

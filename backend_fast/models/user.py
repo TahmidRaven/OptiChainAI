@@ -17,9 +17,17 @@ from sqlalchemy import Column, Integer, String, Date, Float
 from database import Base
 
 class SalesData(Base):
-    __tablename__ = "sales"
-
+    __tablename__ = "sales_data"
     id = Column(Integer, primary_key=True, index=True)
-    product_id = Column(Integer, index=True)
+    sku = Column(String, index=True)
     date = Column(Date)
-    quantity_sold = Column(Float)
+    quantity = Column(Integer)
+
+class ForecastResult(Base):
+    __tablename__ = "forecast_result"
+    id = Column(Integer, primary_key=True, index=True)
+    sku = Column(String, index=True)
+    forecast_date = Column(Date)
+    yhat = Column(Float)
+    yhat_lower = Column(Float)
+    yhat_upper = Column(Float)
