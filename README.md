@@ -1,2 +1,2 @@
 # OptiChainAI
-An SME product for consumers
+An AI powered supply chain solution for SME businesses
