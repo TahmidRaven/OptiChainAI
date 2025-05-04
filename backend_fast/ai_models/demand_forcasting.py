@@ -1,25 +1,22 @@
 import pandas as pd
 from prophet import Prophet
+from sqlalchemy.orm import Session
+from models import SalesData
 
 class DemandForecaster:
-    def __init__(self, data_path: str):
-        """
-        Initializes the forecaster with the dataset.
-        """
-        self.df = pd.read_csv(data_path)
+    def __init__(self, db: Session):
+        records = db.query(SalesData).all()
+        self.df = pd.DataFrame([{
+            "sku": r.sku,
+            "date": r.date,
+            "quantity": r.quantity
+        } for r in records])
         self.df["date"] = pd.to_datetime(self.df["date"])
-        self.df["sku"] = self.df["sku"].astype(str)
 
     def get_skus(self):
-        """
-        Returns a list of unique SKU identifiers.
-        """
         return self.df["sku"].unique().tolist()
 
     def forecast(self, sku: str, periods: int = 30):
-        """
-        Runs Prophet forecasting on a given SKU.
-        """
         sku_df = self.df[self.df["sku"] == sku][["date", "quantity"]].copy()
         if sku_df.empty:
             raise ValueError(f"No data found for SKU: {sku}")

@@ -13,3 +13,9 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Create tables (only once during setup)
 Base.metadata.create_all(bind=engine)
+
+def load_csv_to_db(db: Session, csv_path: str):
+    df = pd.read_csv(csv_path)
+    for _, row in df.iterrows():
+        db.add(SalesData(sku=row["sku"], date=row["date"], quantity=row["quantity"]))
+    db.commit()

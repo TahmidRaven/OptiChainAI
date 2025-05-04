@@ -6,6 +6,12 @@ import Login from "./Components/Login/Login.jsx";
 import Home from "./Components/Home/Home.jsx";
 import Registration from "./Components/Registration/Registration.jsx";
 import ForecastChart from "./Components/Forecasting/ForecastChart.jsx";
+import InventoryOptimize from "./Components/Inventory/InventoryOptimize.jsx";
+import SupplierAnalytics from "./Components/Supplier/SupplierAnalytics.jsx";
+import RouteOptimization from "./Components/Route/RouteOptimization.jsx";
+import PurchaseOrderSuggest from "./Components/PO/PurchaseOrderSuggest.jsx";
+import DynamicPricing from "./Components/Pricing/DynamicPricing.jsx";
+
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState(() => {
@@ -44,6 +50,16 @@ const App = () => {
         return <Registration navigate={changePage}/>;
       case "forecast": 
         return <ForecastChart />;
+      case "inventory":
+        return <InventoryOptimize />;
+      case "supplier":
+        return <SupplierAnalytics />;
+      case "route":
+        return <RouteOptimization />;
+      case "purchase-orders":
+        return <PurchaseOrderSuggest />;
+      case "pricing":
+        return <DynamicPricing />;
       default:
         return <Home navigate={changePage} />;
     }
