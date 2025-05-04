@@ -1,42 +1,100 @@
-def calculate_inventory_threshold(current_stock, avg_sales, lead_time):
-    safety_stock = avg_sales * lead_time * 0.5
-    reorder_point = avg_sales * lead_time + safety_stock
+# ai_services.py
+
+import pandas as pd
+from collections import defaultdict
+from statistics import mean
+
+def calculate_inventory_threshold(avg_daily_sales, lead_time_days):
+    """
+    Calculates safety stock and reorder point.
+    """
+    safety_stock = avg_daily_sales * lead_time_days * 0.5
+    reorder_point = avg_daily_sales * lead_time_days + safety_stock
     return {
         "reorder_point": round(reorder_point),
         "safety_stock": round(safety_stock)
     }
 
-def score_suppliers(suppliers):
+def optimize_inventory(df: pd.DataFrame):
+    """
+    For each SKU, calculate reorder point & safety stock.
+    """
+    recommendations = []
+    grouped = df.groupby('sku')
+
+    for sku, group in grouped:
+        avg_sales = group['sales'].mean()
+        current_stock = group.iloc[-1]['stock_level']
+        lead_time = group.iloc[-1]['supplier_lead_time_days']
+        
+        thresholds = calculate_inventory_threshold(avg_sales, lead_time)
+        recommendations.append({
+            "sku": sku,
+            "avg_daily_sales": round(avg_sales, 2),
+            "current_stock": current_stock,
+            **thresholds
+        })
+
+    return recommendations
+
+
+def score_suppliers(df: pd.DataFrame):
+    """
+    Compute supplier scores based on inverse lead time and rating.
+    """
+    supplier_data = df.groupby('sku').last()
     results = []
-    for s in suppliers:
-        score = (1/s.avg_delivery_days * 0.4 +
-                 s.order_accuracy * 0.3 +
-                 1/s.price_rating * 0.3)
-        results.append({"name": s.name, "score": round(score, 2)})
+
+    for _, row in supplier_data.iterrows():
+        score = (1 / row['supplier_lead_time_days']) * 0.6 + row['supplier_rating'] * 0.4
+        results.append({
+            "sku": row.name,
+            "supplier_lead_time_days": row['supplier_lead_time_days'],
+            "supplier_rating": row['supplier_rating'],
+            "score": round(score, 2)
+        })
+
     return sorted(results, key=lambda x: x["score"], reverse=True)
 
-def optimize_route(routes):
-    best_route = min(routes, key=lambda r: r.distance_km * (1 + r.traffic_level))
-    return {
-        "origin": best_route.origin,
-        "destination": best_route.destination,
-        "estimated_time": round(best_route.distance_km / (50 * (1 - best_route.traffic_level)), 2)  # km/h
-    }
 
-def suggest_purchase_orders(inventories, sales_data):
+def suggest_purchase_orders(df: pd.DataFrame):
+    """
+    Suggest restocking quantities based on inventory thresholds.
+    """
     suggestions = []
-    for inv in inventories:
-        avg_sales = sum(sales_data.get(inv.sku, [0])) / len(sales_data.get(inv.sku, [1]))
-        thresholds = calculate_inventory_threshold(inv.current_stock, avg_sales, inv.lead_time_days)
-        if inv.current_stock < thresholds["reorder_point"]:
-            suggestions.append({"sku": inv.sku, "suggested_order": thresholds["reorder_point"] - inv.current_stock})
+    inv_thresholds = optimize_inventory(df)
+
+    for item in inv_thresholds:
+        if item['current_stock'] < item['reorder_point']:
+            suggestions.append({
+                "sku": item["sku"],
+                "current_stock": item["current_stock"],
+                "reorder_point": item["reorder_point"],
+                "suggested_order_qty": item["reorder_point"] - item["current_stock"]
+            })
+
     return suggestions
 
-def recommend_price(prices):
-    results = []
-    for p in prices:
-        # Price recommendation = weighted average of competitor, cost, demand
-        rec_price = 0.4 * p.competitor_price + 0.3 * p.cost + 0.3 * (p.demand_score * 10)
-        results.append({"sku": p.sku, "recommended_price": round(rec_price, 2)})
-    return results
 
+def recommend_price(df: pd.DataFrame):
+    """
+    Recommend optimal price based on competitor price, own price, and sales trends.
+    """
+    grouped = df.groupby('sku')
+    recommendations = []
+
+    for sku, group in grouped:
+        competitor_price = group['competitor_price_usd'].mean()
+        our_price = group['our_price_usd'].mean()
+        demand_factor = group['sales'].mean() / 100  # Normalize
+
+        recommended_price = round(0.4 * competitor_price + 0.3 * our_price + 0.3 * (demand_factor * 10), 2)
+
+        recommendations.append({
+            "sku": sku,
+            "competitor_price": round(competitor_price, 2),
+            "our_price": round(our_price, 2),
+            "recommended_price": recommended_price
+        })
+
+    return recommendations
