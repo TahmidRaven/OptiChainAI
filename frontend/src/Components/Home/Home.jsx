@@ -13,26 +13,31 @@ const featureData = [
     title: 'Inventory Optimization',
     desc: 'AI-driven recommendations on stock levels and reorder points.',
     img: 'https://cdn-icons-png.flaticon.com/512/2920/2920222.png',
+    route: 'inventory',
   },
   {
     title: 'Supplier Analytics',
     desc: 'Evaluate supplier performance with AI scoring and trend analysis.',
     img: 'https://cdn-icons-png.flaticon.com/512/4359/4359960.png',
+    route: 'supplier',
   },
   {
     title: 'Route Optimization',
     desc: 'AI plans fastest routes to reduce delivery time and fuel costs.',
     img: 'https://cdn-icons-png.flaticon.com/512/854/854878.png',
+    route: 'route',
   },
   {
     title: 'Auto Purchase Orders',
     desc: 'Smart alerts and auto-ordering via WhatsApp or email.',
     img: 'https://cdn-icons-png.flaticon.com/512/3595/3595455.png',
+    route: 'purchase-orders',
   },
   {
     title: 'Dynamic Pricing',
     desc: 'Get pricing suggestions based on demand and competitors.',
     img: 'https://cdn-icons-png.flaticon.com/512/2936/2936844.png',
+    route: 'pricing',
   },
 ];
 
@@ -50,12 +55,8 @@ const Home = ({ navigate }) => {
             <div
               key={index}
               className="feature-card"
-              onClick={() => {
-                if (feature.title === "Demand Forecasting") {
-                  navigate("forecast");
-                }
-              }}
-              style={{ cursor: feature.title === "Demand Forecasting" ? "pointer" : "default" }}
+              onClick={() => navigate(feature.route)}
+              style={{ cursor: 'pointer' }}
             >
               <div className="feature-icon-container">
                 <img src={feature.img} alt={feature.title} className="feature-icon" />

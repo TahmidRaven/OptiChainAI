@@ -6,7 +6,7 @@ import logo from '../../assets/Logo.svg';
 const Navbar = ({ navigate }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
-    // const [darkMode, setDarkMode] = useState(false);
+    // const [darkMode, setDarkMode] = useState(false); 
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
