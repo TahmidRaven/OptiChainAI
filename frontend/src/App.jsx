@@ -6,6 +6,7 @@ import Login from "./Components/Login/Login.jsx";
 import Home from "./Components/Home/Home.jsx";
 import Registration from "./Components/Registration/Registration.jsx";
 import ForecastChart from "./Components/Forecasting/ForecastChart.jsx";
+import Profile from "./Components/Profile/Profile.jsx";
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState(() => {
@@ -40,9 +41,11 @@ const App = () => {
         return <Contact />;
       case "login":
         return <Login navigate={changePage}/>;
+      case "profile":
+        return <Profile navigate={changePage}/>;
       case "registration":
         return <Registration navigate={changePage}/>;
-      case "forecast": 
+      case "forecast":
         return <ForecastChart />;
       default:
         return <Home navigate={changePage} />;
@@ -50,7 +53,7 @@ const App = () => {
   };
 
   return ( 
-    <div>
+    <div className="App">
       <Navbar navigate={changePage} />
       <div className={`page-content ${isTransitioning ? "page-transition-exit" : "page-transition-enter"}`}>
         {renderPage()}
@@ -62,7 +65,5 @@ const App = () => {
     </div>
   );
 };
-
-
 
 export default App;

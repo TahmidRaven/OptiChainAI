@@ -36,10 +36,15 @@ const featureData = [
   },
 ];
 
-const KeyFeatures = ({ navigate }) => {
+const Home = ({ navigate }) => {
   return (
-    <div><Header navigate={navigate} />
-      <div className="container">
+    <div className="home-page">
+      <Header navigate={navigate} />
+      <div className="container space">
+        <div className="section-header">
+          <h2 className="section-title">Our AI-Powered Features</h2>
+          <p className="section-subtitle">Transform your supply chain with our intelligent solutions</p>
+        </div>
         <div className="features-container">
           {featureData.map((feature, index) => (
             <div
@@ -52,7 +57,9 @@ const KeyFeatures = ({ navigate }) => {
               }}
               style={{ cursor: feature.title === "Demand Forecasting" ? "pointer" : "default" }}
             >
-              <img src={feature.img} alt={feature.title} className="feature-icon" />
+              <div className="feature-icon-container">
+                <img src={feature.img} alt={feature.title} className="feature-icon" />
+              </div>
               <h3 className="feature-title">{feature.title}</h3>
               <p className="feature-desc">{feature.desc}</p>
             </div>
@@ -63,4 +70,4 @@ const KeyFeatures = ({ navigate }) => {
   );
 };
 
-export default KeyFeatures;
+export default Home;

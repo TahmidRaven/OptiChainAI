@@ -1,64 +1,90 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import './Navbar.css';
 import PropTypes from "prop-types";
-import logo from "../../assets/Logo.svg";
-import "./Navbar.css";
+import logo from '../../assets/Logo.svg';
 
 const Navbar = ({ navigate }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [darkMode, setDarkMode] = useState(false);
+    const [activeSection, setActiveSection] = useState('home');
+    // const [darkMode, setDarkMode] = useState(false);
 
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-    const closeMenu = () => setIsMenuOpen(false);
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
 
     const handleNavigation = (page) => {
-        closeMenu();
         navigate(page);
         window.scrollTo(0, 0);
     };
 
-    const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
-    };
+    // const toggleDarkMode = () => {
+    //     const newMode = !darkMode;
+    //     setDarkMode(newMode);
+    //     localStorage.setItem('darkMode', newMode);
+    //     document.documentElement.setAttribute('data-theme', newMode ? 'dark' : 'light');
+    // };
 
     useEffect(() => {
-        const savedMode = localStorage.getItem("darkMode") === "true";
-        setDarkMode(savedMode);
+        const savedMode = localStorage.getItem('darkMode') === 'true';
+        // setDarkMode(savedMode);
+        document.documentElement.setAttribute('data-theme', savedMode ? 'dark' : 'light');
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("darkMode", darkMode);
-        if (darkMode) {
-        document.documentElement.setAttribute("data-theme", "dark");
-        } else {
-        document.documentElement.setAttribute("data-theme", "light");
-        }
-    }, [darkMode]);
+        const handleScroll = () => {
+            const sections = ['home', 'about', 'contact'];
+            const scrollY = window.scrollY;
+
+            for (const sectionId of sections) {
+                const section = document.getElementById(sectionId);
+                if (section && section.offsetTop <= scrollY + 120) {
+                    setActiveSection(sectionId);
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
-        <nav className="navbar container">
-        <div onClick={() => handleNavigation("home")}>
-            <img src={logo} alt="Logo" className="event-logo" onClick={() => handleNavigation("home")}/>
-        </div>
-        <div className="dark-mode-toggle-wrapper" onClick={toggleDarkMode}>
-            <div className={`dark-mode-toggle ${darkMode ? "dark" : "light"}`}>
-                {darkMode ? "☀️" : "🌙"}
+        <header className="header container">
+            <div className="header-left">
+                <div className="logo-container">
+                    <img 
+                        src={logo} 
+                        alt="SalesRank.Ai Logo" 
+                        className="logo-img" 
+                    />
+                </div>
+                <button className="mobile-menu-button" onClick={toggleMenu} aria-label="Toggle menu">
+                    <span className={`bar ${isMenuOpen ? 'open' : ''}`}></span>
+                    <span className={`bar ${isMenuOpen ? 'open' : ''}`}></span>
+                    <span className={`bar ${isMenuOpen ? 'open' : ''}`}></span>
+                </button>
+                <nav className={`navigation ${isMenuOpen ? 'open' : ''}`}>
+                    <ul>
+                        <li><a onClick={() => handleNavigation("home")} className={activeSection === "home" ? "active" : ""}>Home</a></li>
+                        <li><a onClick={() => handleNavigation("about")} className={activeSection === "about" ? "active" : ""}>About</a></li>
+                        <li><a onClick={() => handleNavigation("contact")} className={activeSection === "contact" ? "active" : ""}>Contact</a></li>
+                    </ul>
+                </nav>
             </div>
-        </div>
-        <div className={`menu ${isMenuOpen ? "open" : ""}`}>
-            <ul>
-                <li onClick={() => handleNavigation("home")} className="hover-effect">Home</li>
-                <li onClick={() => handleNavigation("contact")} className="hover-effect">Contact</li>
-                <li onClick={() => handleNavigation("login")} ><button className="btn">Log In</button></li>
-            </ul>
-        </div>
-        <div className="hamburger" onClick={toggleMenu}>
-            <div className={`bars-icon ${isMenuOpen ? "open" : ""}`}>
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
+            <div className="header-right">
+                {/* <button 
+                    className="dark-mode-toggle" 
+                    onClick={toggleDarkMode}
+                    aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+                >
+                    {darkMode ? (
+                        <span className="dark-mode-icon">☀️</span>
+                    ) : (
+                        <span className="dark-mode-icon">🌙</span>
+                    )}
+                </button> */}
+                <button onClick={() => handleNavigation("login")} className="get-started-btn">Log In</button>
             </div>
-        </div>
-    </nav>
+        </header>
     );
 };
 

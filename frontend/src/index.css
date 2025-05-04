@@ -1,130 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Montserrat", serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
 :root {
-  --primary-color-light: #ffffff;
-  --primary-color-dark: #2a2a2a;
-  --secondary-color-light: #000000;
-  --secondary-color-dark: #ffffff;
-  --tertiary-color-light: #083b7c;
-  --tertiary-color-dark: #000dc0;
-  --text-color-light: #242424;
+  /* Light theme colors */
+  --primary-color-light: #0546b0;
+  --text-color-light: #2a4365;
+  --light-gray-light: #e2e8f0;
+  --bg-color-light: #ffffff;
+  --header-bg-light: linear-gradient(135deg, #e2e8f0 0%, rgba(226, 232, 240, 0.47) 100%);
+  --shadow-color-light: rgba(0, 0, 0, 0.1);
+
+  --primary-color-dark: #3a7bd5;
   --text-color-dark: #e0e0e0;
-  --shadow-color-light: rgba(0, 0, 0, 0.15);
-  --shadow-color-dark: rgba(255, 255, 255, 0.15);
-}
+  --light-gray-dark: #2d3748;
+  --bg-color-dark: #1a202c;
+  --header-bg-dark: linear-gradient(135deg, #2d3748 0%, rgba(45, 55, 72, 0.8) 100%);
+  --shadow-color-dark: rgba(255, 255, 255, 0.05);
 
-
-[data-theme="light"] {
   --primary-color: var(--primary-color-light);
-  --secondary-color: var(--secondary-color-light);
-  --tertiary-color: var(--tertiary-color-light);
   --text-color: var(--text-color-light);
+  --light-gray: var(--light-gray-light);
+  --bg-color: var(--bg-color-light);
+  --header-bg: var(--header-bg-light);
   --shadow-color: var(--shadow-color-light);
+  
+  /* Common variables */
+  --transition-speed: 0.3s;
+  --border-radius: 0.25rem;
 }
 
 [data-theme="dark"] {
   --primary-color: var(--primary-color-dark);
-  --secondary-color: var(--secondary-color-dark);
-  --tertiary-color: var(--tertiary-color-dark);
   --text-color: var(--text-color-dark);
+  --light-gray: var(--light-gray-dark);
+  --bg-color: var(--bg-color-dark);
+  --header-bg: var(--header-bg-dark);
   --shadow-color: var(--shadow-color-dark);
 }
 
+.App {
+  font-family: "Questrial", sans-serif;
+  color: #2d3748;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background-color: var(--primary-color);
+  background: #fff;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-  line-height: 1;
-  cursor: pointer;
+main {
+  overflow-x: hidden;
 }
 
-p, h1, h2, h3, li {
-  cursor:default;
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-
-.btn {
-  background: var(--tertiary-color);
-  color: #ffffff;
-  font-weight: 500;
-  padding: 12px 25px;
-  font-size: 18px;
-  border-radius: 12px;
-  cursor: pointer;
-  border: 0;
-  outline: 0;
-  transition: background 0.3s, transform 0.3s;
-  box-shadow: 1px 1px 8px var(--secondary-color);
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
-
-.btn:hover {
-  border: 1px solid var(--secondary-color);
-  background: var(--primary-color);
-  color: var(--tertiary-color);
-}
-
 
 .container {
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 15%;
+  padding-right: 15%;
 }
 
 .space {
   margin: 60px;
 }
 
-.page-content {
-  position: relative;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.page-transition-enter {
-  opacity: 1;
-}
-
-.page-transition-exit {
-  opacity: 0;
-}
-
 @media (max-width: 768px) {
-  .container {
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-
-  .btn {
-    padding: 10px 15px;
+  .App {
     font-size: 16px;
-  }
-
-  .space {
-    margin: 30px;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .container {
-    padding-left: 3%;
-    padding-right: 3%;
-  }
-
-  .btn {
-    padding: 10px 16px;
-    font-size: 16px;
-  }
-
-  .space {
-    margin: 20px;
   }
 }

@@ -1,64 +1,100 @@
 import React, { useState } from 'react';
 import './Registration.css';
+import robotIcon from '../../assets/Ai_robot.png';
 
 const Registration = ({ navigate }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Registering user:', { name, email, password });
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Registering user:', { name, email, password });
-    };
+  const handleNavigation = (page) => {
+    navigate(page);
+    window.scrollTo(0, 0);
+  };
 
-    const handleNavigation = (page) => {
-        navigate(page);
-        window.scrollTo(0, 0);
-      };
-
-    return (
-        <div className="login-container">
-        <div className="login-form transparent-bg">
-            <h2>Create Account</h2>
-            <p className="subtitle">Please fill in the details to register</p>
-            <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                className="input-field"
-                placeholder="Full Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-            />
-            <input
-                type="email"
-                className="input-field"
-                placeholder="Email Address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-            />
-            <input
-                type="password"
-                className="input-field"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-            />
-            <button type="submit" className="btn">
+  return (
+    <div className="registration-main-container">
+      <div className="registration-content-container">
+        <div className="registration-left-section">
+          <div className="registration-brand-section">
+            <h1 className="registration-brand-name">OptiChain</h1>
+            <p className="registration-brand-description">
+              AI-powered supply chain optimization platform
+            </p>
+          </div>
+          <img 
+            src={robotIcon} 
+            alt="AI Assistant" 
+            className="registration-robot-image" 
+          />
+        </div>
+        
+        <div className="registration-right-section">
+          <div className="registration-form-container">
+            <h2 className="registration-title">Create Account</h2>
+            <p className="registration-subtitle">Join our platform to optimize your supply chain</p>
+            
+            <form onSubmit={handleSubmit} className="registration-form">
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="registration-input"
+                  placeholder="Full Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+              
+              <div className="input-group">
+                <input
+                  type="email"
+                  className="registration-input"
+                  placeholder="Email Address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              
+              <div className="input-group">
+                <input
+                  type="password"
+                  className="registration-input"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              
+              <button type="submit" className="registration-btn">
                 Register
-            </button>
+                <span className="btn-arrow">→</span>
+              </button>
             </form>
-            <div className="extra-links">
-            <span className="no-account">
-                Alreay have an account? <span onClick={() => handleNavigation("login")} className="signup-link">Login</span>
-            </span>
+            
+            <div className="registration-footer">
+              <span className="have-account">
+                Already have an account?{' '}
+                <span 
+                  onClick={() => handleNavigation("login")} 
+                  className="login-link"
+                >
+                  Login
+                </span>
+              </span>
             </div>
+          </div>
         </div>
-        </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Registration;

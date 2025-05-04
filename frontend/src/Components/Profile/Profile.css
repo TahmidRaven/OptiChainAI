@@ -1,0 +1,162 @@
+/* Profile.css */
+.profile-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .profile-title {
+    font-size: 2rem;
+    color: #0546b0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .profile-icon {
+    font-size: 1.8rem;
+  }
+  
+  .edit-button {
+    background: #0546b0;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .edit-button:hover {
+    background: #043a8f;
+    transform: translateY(-2px);
+  }
+  
+  .profile-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .profile-info {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .profile-avatar {
+    color: #64748b;
+  }
+  
+  .profile-details h2 {
+    font-size: 1.8rem;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+  }
+  
+  .profile-email, .profile-company, .profile-role {
+    color: #64748b;
+    margin: 0.25rem 0;
+  }
+  
+  .profile-stats {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .stat-card {
+    flex: 1;
+    min-width: 150px;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .stat-icon {
+    font-size: 1.5rem;
+    color: #0546b0;
+  }
+  
+  .stat-number {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #0546b0;
+    display: block;
+  }
+  
+  .stat-text {
+    font-size: 0.9rem;
+    color: #64748b;
+  }
+  
+  .profile-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .action-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  
+  .action-button.primary {
+    background: #0546b0;
+    color: white;
+  }
+  
+  .action-button.secondary {
+    background: #e2e8f0;
+    color: #1e293b;
+  }
+  
+  .action-button.warning {
+    background: #fef2f2;
+    color: #dc2626;
+  }
+  
+  .action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .profile-info {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .profile-stats {
+      flex-direction: column;
+    }
+    
+    .profile-actions {
+      flex-direction: column;
+    }
+    
+    .action-button {
+      width: 100%;
+    }
+  }

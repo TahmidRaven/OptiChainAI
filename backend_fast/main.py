@@ -6,10 +6,10 @@ from typing import List
 import pandas as pd
 from io import StringIO
 from datetime import datetime
-from demand_forecasting import DemandForecaster
+from ai_models.demand_forcasting import DemandForecaster
 
 # Local imports
-from .routers import user_router  # Register router
+from routers.user_router import router as user_router
 from .utils.db import Base, engine  # Create tables
 
 # Initialize FastAPI

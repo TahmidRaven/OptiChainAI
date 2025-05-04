@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/TahmidRaven/OptiChainAI/issues"
   },
-  "homepage": "https://github.com/TahmidRaven/OptiChainAI#readme"
+  "homepage": "https://github.com/TahmidRaven/OptiChainAI#readme",
+  "dependencies": {
+    "react-router-dom": "^7.5.3"
+  }
 }

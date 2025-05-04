@@ -1,11 +1,12 @@
-# routers/user_router.py
 from fastapi import APIRouter, HTTPException, Depends
+from ..models.user import models
+from ..schemas.user import models
+from ..models.user import schemas
+from ..utils.db import utils
 from sqlalchemy.orm import Session
-from .. import models, schemas, utils
 
 router = APIRouter()
 
-# Dependency to get the DB session
 def get_db():
     db = utils.db.SessionLocal()
     try:
