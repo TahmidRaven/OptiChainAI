@@ -1,2 +1,4 @@
 0optichainVenv/
 node_modules
+*.env
+*.log
