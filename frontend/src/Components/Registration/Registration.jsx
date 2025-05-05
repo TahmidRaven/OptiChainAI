@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom'; // Updated imports
 import './Registration.css';
 import robotIcon from '../../assets/Ai_robot.png';
 
-const Registration = ({ navigate }) => {
+const Registration = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Use React Router's navigation
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Registering user:', { name, email, password });
-  };
-
-  const handleNavigation = (page) => {
-    navigate(page);
-    window.scrollTo(0, 0);
+    // After successful registration:
+    navigate('/dashboard'); // Redirect to dashboard or login
   };
 
   return (
@@ -82,12 +81,9 @@ const Registration = ({ navigate }) => {
             <div className="registration-footer">
               <span className="have-account">
                 Already have an account?{' '}
-                <span 
-                  onClick={() => handleNavigation("login")} 
-                  className="login-link"
-                >
+                <Link to="/login" className="login-link">
                   Login
-                </span>
+                </Link>
               </span>
             </div>
           </div>

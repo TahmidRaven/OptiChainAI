@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from '../Header/Header.jsx';
+// import { useAuth } from '../../AuthContext';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 const featureData = [
@@ -41,22 +43,32 @@ const featureData = [
   },
 ];
 
-const Home = ({ navigate }) => {
+const Home = () => {
+  // const { user } = useAuth();
+  // const navigate = useNavigate();
+
+  // const handleFeatureClick = (route) => {
+  //   if (!user) {
+  //     navigate('/login', { state: { from: route } });
+  //   } else {
+  //     navigate(route);
+  //   }
+  // };
+
   return (
     <div className="home-page">
-      <Header navigate={navigate} />
+      <Header />
       <div className="container space">
         <div className="section-header">
           <h2 className="section-title">Our AI-Powered Features</h2>
           <p className="section-subtitle">Transform your supply chain with our intelligent solutions</p>
         </div>
         <div className="features-container">
-          {featureData.map((feature, index) => (
+          {featureData.map((feature) => (
             <div
-              key={index}
+              key={feature.route}
               className="feature-card"
-              onClick={() => navigate(feature.route)}
-              style={{ cursor: 'pointer' }}
+              // onClick={() => handleFeatureClick(feature.route)}
             >
               <div className="feature-icon-container">
                 <img src={feature.img} alt={feature.title} className="feature-icon" />

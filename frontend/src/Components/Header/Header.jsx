@@ -1,7 +1,6 @@
 
 import React from 'react';
 import './Header.css';
-// import heroImage from '../../assets/heroImage.jpg';
 import Ai_robot from '../../assets/Ai_robot.png';
 import Manu from '../../assets/manu.png';
 

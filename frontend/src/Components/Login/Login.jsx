@@ -1,20 +1,17 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
+import { useNavigate, Link } from 'react-router-dom'; 
 import './Login.css';
 import robotIcon from '../../assets/Ai_robot.png';
 
-const Login = ({ navigate }) => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Logging in with:', { email, password });
-  };
-
-  const handleNavigation = (page) => {
-    navigate(page);
-    window.scrollTo(0, 0);
+    navigate('/dashboard');
   };
 
   return (
@@ -72,12 +69,9 @@ const Login = ({ navigate }) => {
               <a href="#" className="forgot-password">Forgot password?</a>
               <span className="no-account">
                 Don't have an account?{' '}
-                <span 
-                  onClick={() => handleNavigation("registration")} 
-                  className="signup-link"
-                >
+                <Link to="/registration" className="signup-link">
                   Sign Up
-                </span>
+                </Link>
               </span>
             </div>
           </div>
@@ -85,10 +79,6 @@ const Login = ({ navigate }) => {
       </div>
     </div>
   );
-};
-
-Login.propTypes = {
-  navigate: PropTypes.func.isRequired,
 };
 
 export default Login;

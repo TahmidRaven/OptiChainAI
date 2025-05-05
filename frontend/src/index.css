@@ -23,7 +23,6 @@
   --header-bg: var(--header-bg-light);
   --shadow-color: var(--shadow-color-light);
   
-  /* Common variables */
   --transition-speed: 0.3s;
   --border-radius: 0.25rem;
 }
