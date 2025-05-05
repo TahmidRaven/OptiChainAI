@@ -1,13 +1,4 @@
-fastapi
-uvicorn
-tortoise-orm
-asyncpg
-python-dotenv
-aiohttp
-google-auth
-pandas
-numpy
-scikit-learn
-statsmodels
-python-multipart
-prophet
+fastapi==0.115.12
+tortoise-orm==0.25.0
+uvicorn==0.18.2
+httpx

@@ -167,6 +167,19 @@
   .signup-link:hover {
     text-decoration: underline;
   }
+
+  .or-divider {
+    text-align: center;
+    margin: 10px 0;
+    font-weight: bold;
+    color: #666;
+  }
+  
+  .google-signin-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }  
   
   /* Responsive Styles */
   @media (max-width: 992px) {

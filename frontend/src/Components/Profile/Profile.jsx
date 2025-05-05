@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Profile.css';
 import { FaUserCircle, FaEdit, FaChartLine, FaBox, FaCog } from 'react-icons/fa';
 
 const Profile = () => {
-    const userData = {
-        name: 'John Doe',
-        email: 'john@optichain.com',
-        company: 'Acme Corp',
-        role: 'Supply Chain Manager',
-        stats: {
-        forecasts: 42,
-        optimizations: 18,
-        activeSKUs: 7
+    const [userData, setUserData] = useState({
+        name: '',
+        email: '',
+        company: 'Unknown Inc.',
+        role: 'User',
+        stats: { forecasts: 0, optimizations: 0, activeSKUs: 0 }
+    });
+
+    useEffect(() => {
+        const user = localStorage.getItem('user');
+        if (user) {
+        const parsed = JSON.parse(user);
+        setUserData((prev) => ({
+            ...prev,
+            name: parsed.name,
+            email: parsed.email,
+        }));
         }
-    };
+    }, []);
 
     return (
         <div className="profile-container">

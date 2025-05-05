@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../Header/Header.jsx';
-// import { useAuth } from '../../AuthContext';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
@@ -44,15 +43,10 @@ const featureData = [
 ];
 
 const Home = () => {
-  // const { user } = useAuth();
   const navigate = useNavigate();
 
   const handleFeatureClick = (route) => {
-    // if (!user) {
-    //   navigate('/login', { state: { from: route } });
-    // } else {
       navigate(route);
-    // }
   };
 
   return (

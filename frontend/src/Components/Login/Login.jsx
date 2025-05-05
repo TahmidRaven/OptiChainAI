@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom'; 
 import './Login.css';
 import robotIcon from '../../assets/Ai_robot.png';
+import GoogleSignIn from '../../GoogleSignIn.jsx';
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -64,6 +66,11 @@ const Login = () => {
                 <span className="btn-arrow">→</span>
               </button>
             </form>
+
+            <div className="google-signin-wrapper">
+              <p className="or-divider">or</p>
+              <GoogleSignIn />
+            </div>
             
             <div className="login-footer">
               <a href="#" className="forgot-password">Forgot password?</a>

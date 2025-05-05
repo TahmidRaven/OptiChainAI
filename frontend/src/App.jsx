@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './Components/Home/Home.jsx'
 import Contact from './Components/Contact/Contact.jsx'
 import Login from './Components/Login/Login.jsx'
@@ -11,6 +11,7 @@ import SupplierAnalytics from './Components/SupplierAnalytics/SupplierAnalytics.
 import RouteOptimization from './Components/RouteOptimization/RouteOptimization.jsx'
 import PurchaseOrders from './Components/PurchaseOrderSuggest/PurchaseOrderSuggest.jsx'
 import DynamicPricing from './Components/DynamicPricing/DynamicPricing.jsx'
+// import GoogleSignIn from './GoogleSignIn';
 
 const App = () => {
   return (
@@ -19,7 +20,8 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="contact" element={<Contact />} />
         <Route path="login" element={<Login />} />
-        <Route path="profile" element={<Profile />} />
+        {/* <Route path="googlesignin" element={<GoogleSignIn />} /> */}
+        <Route path="profile" element={localStorage.getItem('user') ? <Profile /> : <Navigate to="/login" />} />
         <Route path="registration" element={<Registration />} />
         <Route path="demand-forecasting" element={<DemandForecasting />} />
         <Route path="inventory-optimization" element={<InventoryOptimization />} />
@@ -27,6 +29,7 @@ const App = () => {
         <Route path="route-optimization" element={<RouteOptimization />} />
         <Route path="purchase-orders" element={<PurchaseOrders />} />
         <Route path="dynamic-pricing" element={<DynamicPricing />} />
+        <Route path="*" element={<div>404 - Page Not Found</div>} />
       </Route>
     </Routes>
   )
