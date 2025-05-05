@@ -1,116 +1,88 @@
-import React, { useEffect, useState } from "react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-import './ForecastChart.css';
+import React from 'react';
+import { Line } from 'react-chartjs-2';
+import { Box, Typography } from '@mui/material';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 
-const ForecastChart = () => {
-  const [skuList, setSkuList] = useState([]);
-  const [selectedSku, setSelectedSku] = useState("");
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-  // Fetch SKU list
-  useEffect(() => {
-    setLoading(true);
-    fetch("http://localhost:8000/skus")
-      .then((res) => res.json())
-      .then((json) => {
-        setSkuList(json);
-        setSelectedSku(json[0]); // Set default SKU
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to load SKU list:", err);
-        setLoading(false);
-      });
-  }, []);
+const ForecastChart = ({ forecastData }) => {
+  if (!forecastData || !forecastData.forecast) return null;
 
-  // Fetch forecast when SKU changes
-  useEffect(() => {
-    if (selectedSku) {
-      setLoading(true);
-      fetch(`http://localhost:8000/forecast/${selectedSku}`)
-        .then((res) => res.json())
-        .then((json) => {
-          setData(json);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error("Failed to load forecast:", err);
-          setLoading(false);
-        });
-    }
-  }, [selectedSku]);
+  const labels = forecastData.forecast.map(item => new Date(item.date).toLocaleDateString());
+  const hwData = forecastData.forecast.map(item => item.hw_forecast);
+  const rfData = forecastData.forecast.map(item => item.rf_forecast);
+  const prophetData = forecastData.forecast.map(item => item.prophet_forecast);
+  const ensembleData = forecastData.forecast.map(item => item.ensemble_forecast);
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Holt-Winters Forecast',
+        data: hwData,
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      },
+      {
+        label: 'Random Forest Forecast',
+        data: rfData,
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      },
+      {
+        label: 'Prophet Forecast',
+        data: prophetData,
+        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+      },
+      {
+        label: 'Ensemble Forecast',
+        data: ensembleData,
+        borderColor: 'rgb(255, 159, 64)',
+        backgroundColor: 'rgba(255, 159, 64, 0.5)',
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: `Demand Forecast for ${forecastData.sku}`,
+      },
+    },
+  };
 
   return (
-    <div className="forecast-container">
-      <div className="forecast-header">
-        <h2 className="forecast-title">
-          <span className="forecast-icon">📈</span> Demand Forecast
-        </h2>
-        
-        {skuList.length > 0 && (
-          <div className="sku-selector">
-            <label htmlFor="sku-select" className="sku-label">Select SKU:</label>
-            <select
-              id="sku-select"
-              value={selectedSku}
-              onChange={(e) => setSelectedSku(e.target.value)}
-              className="sku-select"
-            >
-              {skuList.map((sku) => (
-                <option key={sku} value={sku}>
-                  {sku}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
-      </div>
-
-      <div className="chart-container">
-        {loading ? (
-          <div className="loading-indicator">
-            <div className="loading-spinner"></div>
-            <p>Loading forecast data...</p>
-          </div>
-        ) : data.length > 0 ? (
-          <ResponsiveContainer width="100%" height={400}>
-            <LineChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-              <XAxis 
-                dataKey="ds" 
-                stroke="#64748b"
-                tick={{ fill: '#475569' }}
-              />
-              <YAxis 
-                stroke="#64748b"
-                tick={{ fill: '#475569' }}
-              />
-              <Tooltip 
-                contentStyle={{
-                  background: '#f8fafc',
-                  border: '1px solid #e2e8f0',
-                  borderRadius: '8px',
-                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
-                }}
-              />
-              <Line
-                type="monotone"
-                dataKey="yhat"
-                stroke="#0546b0"
-                strokeWidth={2}
-                dot={false}
-                activeDot={{ r: 6, fill: '#043a8f' }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        ) : (
-          <div className="no-data">
-            <p>No forecast data available for the selected SKU.</p>
-          </div>
-        )}
-      </div>
-    </div>
+    <Box sx={{ p: 2 }}>
+      <Typography variant="h6" gutterBottom>
+        Demand Forecast for {forecastData.sku}
+      </Typography>
+      <Box sx={{ height: '400px' }}>
+        <Line options={options} data={data} />
+      </Box>
+    </Box>
   );
 };
 

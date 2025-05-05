@@ -5,3 +5,9 @@ asyncpg
 python-dotenv
 aiohttp
 google-auth
+pandas
+numpy
+scikit-learn
+statsmodels
+python-multipart
+prophet
