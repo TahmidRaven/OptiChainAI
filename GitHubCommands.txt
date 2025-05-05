@@ -19,3 +19,5 @@ git push -u origin "ew_branch_name_&switch"
 git branch -d "delete_local_branch"
 
 git merge "branch_name_that you want to merge"
+
+git checkout main
