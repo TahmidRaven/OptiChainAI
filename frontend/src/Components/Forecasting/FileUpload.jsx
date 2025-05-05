@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Button, Box, Typography, LinearProgress } from '@mui/material';
-import { uploadSalesData } from '../services/api';
+import React, { useState } from "react";
+import { Button, Box, Typography, LinearProgress } from "@mui/material";
+import { uploadSalesData } from "../services/api";
 
 const FileUpload = ({ onUploadSuccess }) => {
   const [file, setFile] = useState(null);
@@ -22,21 +22,23 @@ const FileUpload = ({ onUploadSuccess }) => {
       setUploadProgress(100);
       onUploadSuccess();
     } catch (error) {
-      console.error('Upload failed:', error);
+      console.error("Upload failed:", error);
     } finally {
       setUploading(false);
     }
   };
 
   return (
-    <Box sx={{ p: 2, border: '1px dashed grey', borderRadius: 1 }}>
-      <Typography variant="h6" gutterBottom>Upload Sales Data</Typography>
+    <Box sx={{ p: 2, border: "1px dashed grey", borderRadius: 1 }}>
+      <Typography variant="h6" gutterBottom>
+        Upload Sales Data
+      </Typography>
       <input
         type="file"
         accept=".csv"
         onChange={handleFileChange}
         disabled={uploading}
-        style={{ marginBottom: '16px' }}
+        style={{ marginBottom: "16px" }}
       />
       <Button
         variant="contained"
