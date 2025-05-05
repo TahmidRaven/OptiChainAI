@@ -6,6 +6,8 @@ import Profile from './Components/Profile/Profile.jsx'
 import Registration from './Components/Registration/Registration.jsx'
 import ForecastChart from './Components/Forecasting/ForecastChart.jsx'
 import Layout from './Components/Layout/Layout.jsx'
+import InventoryOptimize from './Components/InventoryOptimize/InventoryOptimize.jsx'
+import SupplierAnalytics from './Components/SupplierAnalytics/SupplierAnalytics.jsx'
 
 const App = () => {
   return (
@@ -18,10 +20,8 @@ const App = () => {
         <Route path="profile" element={<Profile />} />
         <Route path="registration" element={<Registration />} />
         <Route path="forecast" element={<ForecastChart />} />
-        
-        {/* Uncomment when components are ready */}
-        {/* <Route path="inventory" element={<InventoryOptimize />} /> */}
-        {/* <Route path="supplier" element={<SupplierAnalytics />} /> */}
+        <Route path="inventory" element={<InventoryOptimize />} />
+        <Route path="supplier" element={<SupplierAnalytics />} />
       </Route>
     </Routes>
   )

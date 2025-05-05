@@ -45,15 +45,15 @@ const featureData = [
 
 const Home = () => {
   // const { user } = useAuth();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const handleFeatureClick = (route) => {
-  //   if (!user) {
-  //     navigate('/login', { state: { from: route } });
-  //   } else {
-  //     navigate(route);
-  //   }
-  // };
+  const handleFeatureClick = (route) => {
+    // if (!user) {
+    //   navigate('/login', { state: { from: route } });
+    // } else {
+      navigate(route);
+    // }
+  };
 
   return (
     <div className="home-page">
@@ -68,7 +68,7 @@ const Home = () => {
             <div
               key={feature.route}
               className="feature-card"
-              // onClick={() => handleFeatureClick(feature.route)}
+              onClick={() => handleFeatureClick(feature.route)}
             >
               <div className="feature-icon-container">
                 <img src={feature.img} alt={feature.title} className="feature-icon" />

@@ -7,9 +7,9 @@ import pandas as pd
 from io import StringIO
 from datetime import datetime
 <<<<<<< HEAD
-from ai_models.demand_forcasting import DemandForecaster
+from backend.demand_forcasting import DemandForecaster
 =======
-from .ai_models.demand_forcasting import DemandForecaster 
+from ..backend.demand_forcasting import DemandForecaster 
 >>>>>>> 358c7579379a30b36bd267ad894b946da2520380
 
 # Local imports
