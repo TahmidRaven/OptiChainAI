@@ -1,11 +1,10 @@
-
 import React from 'react';
 import './Header.css';
 import Ai_robot from '../../assets/Ai_robot.png';
-import Manu from '../../assets/manu.png';
+import Supplychain1 from '../../assets/supplychain1.jpg';
+import Supplychain2 from '../../assets/supplychain2.jpg';
 
 const Header = () => {
-
   return (
     <div className="main-header-container">
       <div className="main-header-content container">
@@ -23,7 +22,10 @@ const Header = () => {
         </div>
         
         <div className="main-header-right">
-          <img src={Manu} alt="AI Technology" className="main-robot-image" />
+          <div className="image-stack">
+            <img src={Supplychain1} alt="Supply Chain" className="stacked-image bottom-image" />
+            <img src={Supplychain2} alt="Supply Chain" className="stacked-image top-image" />
+          </div>
         </div>
       </div>
     </div>

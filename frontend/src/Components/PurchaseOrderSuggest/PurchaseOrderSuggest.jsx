@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './PurchaseOrderSuggest.css'
 
 const PurchaseOrderSuggest = () => {
   const [suggestions, setSuggestions] = useState([]);
@@ -11,7 +12,7 @@ const PurchaseOrderSuggest = () => {
   }, []);
 
   return (
-    <div>
+    <div className="purchase-order">
       <h2>Suggested Purchase Orders</h2>
       <ul>
         {suggestions.map((s, idx) => (

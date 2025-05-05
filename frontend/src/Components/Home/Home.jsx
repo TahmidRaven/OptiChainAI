@@ -9,25 +9,25 @@ const featureData = [
     title: 'Demand Forecasting',
     desc: 'Predict demand using AI and trends to prevent stockouts and overstocking.',
     img: 'https://cdn-icons-png.flaticon.com/512/2329/2329083.png',
-    route: 'forecast'
+    route: 'demand-forecasting'
   },
   {
     title: 'Inventory Optimization',
     desc: 'AI-driven recommendations on stock levels and reorder points.',
     img: 'https://cdn-icons-png.flaticon.com/512/2920/2920222.png',
-    route: 'inventory',
+    route: 'inventory-optimization',
   },
   {
     title: 'Supplier Analytics',
     desc: 'Evaluate supplier performance with AI scoring and trend analysis.',
     img: 'https://cdn-icons-png.flaticon.com/512/4359/4359960.png',
-    route: 'supplier',
+    route: 'supplier-analytics',
   },
   {
     title: 'Route Optimization',
     desc: 'AI plans fastest routes to reduce delivery time and fuel costs.',
     img: 'https://cdn-icons-png.flaticon.com/512/854/854878.png',
-    route: 'route',
+    route: 'route-optimization',
   },
   {
     title: 'Auto Purchase Orders',
@@ -39,7 +39,7 @@ const featureData = [
     title: 'Dynamic Pricing',
     desc: 'Get pricing suggestions based on demand and competitors.',
     img: 'https://cdn-icons-png.flaticon.com/512/2936/2936844.png',
-    route: 'pricing',
+    route: 'dynamic-pricing',
   },
 ];
 

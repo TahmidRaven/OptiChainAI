@@ -11,8 +11,8 @@ const RouteOptimization = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Optimal Delivery Route</h2>
+      <div className="route-optimization">
+        <h2>Optimal Delivery Route</h2>
       {route ? (
         <p>
           From {route.origin} to {route.destination} — Estimated Time: {route.estimated_time} hrs

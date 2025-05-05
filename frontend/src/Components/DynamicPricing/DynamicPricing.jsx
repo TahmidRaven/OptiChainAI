@@ -11,7 +11,7 @@ const DynamicPricing = () => {
   }, []);
 
   return (
-    <div>
+    <div className="dynamic-pricing">
       <h2>Dynamic Pricing Recommendations</h2>
       <ul>
         {prices.map((p, idx) => (

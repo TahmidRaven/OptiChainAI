@@ -1,4 +1,4 @@
-import { useState } from 'react'; // Add this
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/Logo.svg';
 import './Navbar.css';
@@ -25,7 +25,7 @@ const Navbar = () => {
                 <ul>
                     <li>
                     <NavLink 
-                        to="/home" 
+                        to="/" 
                         className={({ isActive }) => isActive ? "active" : ""}
                         onClick={() => setIsMenuOpen(false)}
                     >

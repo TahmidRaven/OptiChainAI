@@ -11,7 +11,7 @@ const SupplierAnalytics = () => {
   }, []);
 
   return (
-    <div>
+    <div className="supplier-analytics">
       <h2>Supplier Performance Analytics</h2>
       <ul>
         {suppliers.map((s, idx) => (
