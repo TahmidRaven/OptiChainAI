@@ -10,7 +10,6 @@ class User(Model):
     def __str__(self):
         return f'{self.username} ({self.email})'
 
-
 class ProductData(Model):
     id = fields.IntField(pk=True)
     date = fields.DateField()
