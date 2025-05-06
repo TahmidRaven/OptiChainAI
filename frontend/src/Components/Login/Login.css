@@ -181,7 +181,6 @@
     margin-top: 10px;
   }  
   
-  /* Responsive Styles */
   @media (max-width: 992px) {
     .login-content-container {
       grid-template-columns: 1fr;

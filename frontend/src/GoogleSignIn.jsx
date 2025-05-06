@@ -30,7 +30,7 @@ const GoogleSignIn = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
       <GoogleLogin
         onSuccess={handleSuccess}
         onError={() => console.log("Login Failed")}
